@@ -7,7 +7,7 @@ import Form from './components/Form/Form';
 // import {ShadowView} from 'shadow-view'
 // import ReactShadowRoot from 'react-shadow-root';
 import './App.css'
-import './components/Greeting/greeting.css'
+// import './components/Greeting/greeting.css'
 import './components/Form/Form.css'
 import {create} from 'jss'
 import {StylesProvider, jssPreset} from '@material-ui/styles'
@@ -16,6 +16,8 @@ import {CacheProvider} from '@emotion/react'
 import {Provider} from 'react-redux'
 import createCache from '@emotion/cache';
 import store from './redux/store'
+import Second from './components/second/second';
+// import styles from './components/second/second.module.css'
 // import root from 'react-shadow'
 
 // export class ShadowView extends React.Component {
@@ -41,6 +43,7 @@ function App() {
 
     <div className="App" >
       <Greeting/>
+      <Second />
       <Form/>
     </div>
     </Provider>
@@ -50,36 +53,39 @@ function App() {
   );
 }
 
-const theme = createTheme()
-export class ReactElement extends HTMLElement {
-  connectedCallback () {
-    const shadowRoot = this.attachShadow({mode: 'open'})
-    const mountPoint = document.createElement('div')
-    const emotionRoot = document.createElement('style')
-    shadowRoot.appendChild(emotionRoot)
-    const reactPoint = shadowRoot.appendChild(mountPoint)
-    const jss = create({
-      ...jssPreset(),
-      insertionPoint: reactPoint
-    })
-    const cache = createCache({
-      key: 'css',
-      prepend: true,
-      container: emotionRoot
-    })
-    ReactDOM.render(
-      <StylesProvider jss={jss}>
-        <CacheProvider value={cache}>
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-        </CacheProvider>
-      </StylesProvider>, mountPoint
-    )
-  }
-}
+// const theme = createTheme()
+// export class ReactElement extends HTMLElement {
+//   connectedCallback () {
+//     const shadowRoot = this.attachShadow({mode: 'open'})
+//     const mountPoint = document.createElement('div')
+//     const emotionRoot = document.createElement('style')
+//     const reactPoint = shadowRoot.appendChild(mountPoint)
+//     shadowRoot.appendChild(emotionRoot)
+//     const jss = create({
+//       ...jssPreset(),
+//       insertionPoint: reactPoint
+//     })
+//     const cache = createCache({
+//       key: 'css',
+//       prepend: true,
+//       container: emotionRoot
+//     })
+//     // emotionRoot.appendChild(styles.second)
+//     // const style = document.createElement('style')
+//     // style.innerHTML = ''
+//     ReactDOM.render(
+//       <StylesProvider jss={jss}>
+//         <CacheProvider value={cache}>
+//           <ThemeProvider theme={theme}>
+//             <App />
+//           </ThemeProvider>
+//         </CacheProvider>
+//       </StylesProvider>, mountPoint
+//     )
+//   }
+// }
 
-// customElements.define('react-element', ReactElement)
+// customElements.define('react-component', ReactElement)
 
 // const container = document.createElement('div');
 // document.body.appendChild(container);
@@ -92,20 +98,20 @@ export class ReactElement extends HTMLElement {
 
 // ReactDOM.render(<App />, target);
 
-// export default function ReactApp () {
-//   return <App />
-// }
+export default function ReactApp () {
+  return <App />
+}
 
-// class ReactElement extends HTMLElement {
-//   connectedCallback () {
-//     this.mountPoint = document.createElement('div')
-//     const shadowRoot = this.attachShadow({mode: 'open'})
-//     shadowRoot.appendChild(this.mountPoint)
-//     ReactDOM.render(<ReactApp />, this.mountPoint)
-//   }
-// }
+class ReactElement extends HTMLElement {
+  connectedCallback () {
+    // this.mountPoint = document.createElement('div')
+    // const shadowRoot = this.attachShadow({mode: 'open'})
+    // shadowRoot.appendChild(this.mountPoint)
+    ReactDOM.render(<ReactApp />, this)
+  }
+}
 
-// customElements.define('react-component', ReactElement)
+customElements.define('react-component', ReactElement)
 
 
 // const ReactGreeting = reactToWebComponent(App, React, ReactDOM);
@@ -113,4 +119,4 @@ export class ReactElement extends HTMLElement {
 
 
 
-export default App;
+// export default App;

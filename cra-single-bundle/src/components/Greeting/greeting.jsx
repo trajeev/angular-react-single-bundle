@@ -1,14 +1,22 @@
 import React from 'react';
-import './greeting.css'
+// import styles from './greeting.css'
 // import ReactDOM from 'react-dom'
 // import reactToWebComponent from "react-to-webcomponent"
+import styled from 'styled-components'
+// const style = {
+//     color: 'red',
+// }
+
+const Heading = styled.h1`
+    color: orange
+`
 
 const Greeting = () => (
-    <div className = 'greet'>
-        <h1>
+    // <div style={style}>
+        <Heading>
             greetings from react
-        </h1>
-    </div>
+        </Heading>
+    // </div>
 )
 
 // const ReactGreeting = reactToWebComponent(Greeting, React, ReactDOM)
