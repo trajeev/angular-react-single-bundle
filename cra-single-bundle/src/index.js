@@ -3,19 +3,19 @@ import ReactDOM from 'react-dom';
 // import {Provider} from 'react-redux'
 // import store from './redux/store';
 import './index.css';
-// import {ReactElement} from './App';
+import {ReactElement} from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
-import App from './App'
+// import App from './App'
 
-// customElements.define('react-component', ReactElement)
+customElements.define('react-component', ReactElement)
 
 ReactDOM.render(
   // <Provider store = {store}>
     <BrowserRouter>
       <React.StrictMode>
-        <App />
-        {/* <react-component></react-component> */}
+        {/* <App /> */}
+        <react-component></react-component>
       </React.StrictMode>
     </BrowserRouter>,
   // </Provider>,

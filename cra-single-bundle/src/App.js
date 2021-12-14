@@ -9,8 +9,8 @@ import Form from './components/Form/Form';
 import './App.css'
 // import './components/Greeting/greeting.css'
 import './components/Form/Form.css'
-import {create} from 'jss'
-import {StylesProvider, jssPreset} from '@material-ui/styles'
+// import {create} from 'jss'
+// import {StylesProvider, jssPreset} from '@material-ui/styles'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 import {CacheProvider} from '@emotion/react'
 import {Provider} from 'react-redux'
@@ -33,6 +33,12 @@ import Second from './components/second/second';
 //   }
 // }
 
+const styles = {
+  textAlign: 'center', 
+  color: 'rgb(58, 99, 134)', 
+  height: '100vh', 
+}
+
 function App() {
   
   return (
@@ -41,9 +47,9 @@ function App() {
     // <ShadowView>
     <Provider store={store}>
 
-    <div className="App" >
+    <div style={styles} >
       <Greeting/>
-      <Second />
+      {/* <Second /> */}
       <Form/>
     </div>
     </Provider>
@@ -53,37 +59,38 @@ function App() {
   );
 }
 
-// const theme = createTheme()
-// export class ReactElement extends HTMLElement {
-//   connectedCallback () {
-//     const shadowRoot = this.attachShadow({mode: 'open'})
-//     const mountPoint = document.createElement('div')
-//     const emotionRoot = document.createElement('style')
-//     const reactPoint = shadowRoot.appendChild(mountPoint)
-//     shadowRoot.appendChild(emotionRoot)
-//     const jss = create({
-//       ...jssPreset(),
-//       insertionPoint: reactPoint
-//     })
-//     const cache = createCache({
-//       key: 'css',
-//       prepend: true,
-//       container: emotionRoot
-//     })
-//     // emotionRoot.appendChild(styles.second)
-//     // const style = document.createElement('style')
-//     // style.innerHTML = ''
-//     ReactDOM.render(
-//       <StylesProvider jss={jss}>
-//         <CacheProvider value={cache}>
-//           <ThemeProvider theme={theme}>
-//             <App />
-//           </ThemeProvider>
-//         </CacheProvider>
-//       </StylesProvider>, mountPoint
-//     )
-//   }
-// }
+const theme = createTheme()
+export class ReactElement extends HTMLElement {
+  connectedCallback () {
+    const shadowRoot = this.attachShadow({mode: 'open'})
+    const mountPoint = document.createElement('div')
+    const emotionRoot = document.createElement('style')
+    shadowRoot.appendChild(mountPoint)
+    shadowRoot.appendChild(emotionRoot)
+    // const jss = create({
+    //   ...jssPreset(),
+    //   insertionPoint: reactPoint
+    // })
+    const cache = createCache({
+      key: 'css',
+      prepend: true,
+      container: emotionRoot
+    })
+    // emotionRoot.appendChild(styles.second)
+    // const style = document.createElement('style')
+    // style.innerHTML = ''
+    ReactDOM.render(
+      // <StylesProvider jss={jss}>
+        <CacheProvider value={cache}>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </CacheProvider>
+      // </StylesProvider>
+      , mountPoint
+    )
+  }
+}
 
 // customElements.define('react-component', ReactElement)
 
@@ -98,20 +105,20 @@ function App() {
 
 // ReactDOM.render(<App />, target);
 
-export default function ReactApp () {
-  return <App />
-}
+// export default function ReactApp () {
+//   return <App />
+// }
 
-class ReactElement extends HTMLElement {
-  connectedCallback () {
-    // this.mountPoint = document.createElement('div')
-    // const shadowRoot = this.attachShadow({mode: 'open'})
-    // shadowRoot.appendChild(this.mountPoint)
-    ReactDOM.render(<ReactApp />, this)
-  }
-}
+// export class ReactElement extends HTMLElement {
+//   connectedCallback () {
+//     // const mountPoint = document.createElement('div')
+//     const shadowRoot = this.attachShadow({mode: 'open'})
+//     // shadowRoot.appendChild(mountPoint)
+//     ReactDOM.render(<ReactApp />, shadowRoot)
+//   }
+// }
 
-customElements.define('react-component', ReactElement)
+// customElements.define('react-component', ReactElement)
 
 
 // const ReactGreeting = reactToWebComponent(App, React, ReactDOM);

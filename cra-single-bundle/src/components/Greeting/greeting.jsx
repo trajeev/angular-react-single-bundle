@@ -2,21 +2,24 @@ import React from 'react';
 // import styles from './greeting.css'
 // import ReactDOM from 'react-dom'
 // import reactToWebComponent from "react-to-webcomponent"
-import styled from 'styled-components'
-// const style = {
-//     color: 'red',
-// }
+// import styled from 'styled-components'
+const style = {
+    color: 'red',
+}
 
-const Heading = styled.h1`
-    color: orange
-`
+// const Heading = styled.h1`
+//     color: orange
+// `
 
 const Greeting = () => (
-    // <div style={style}>
-        <Heading>
-            greetings from react
-        </Heading>
-    // </div>
+    <div style={style}>
+        {/* // <Heading> */}
+            <h1>
+                greetings from react
+            </h1>
+                
+        {/* </Heading> */}
+    </div>
 )
 
 // const ReactGreeting = reactToWebComponent(Greeting, React, ReactDOM)

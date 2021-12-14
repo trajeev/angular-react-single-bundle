@@ -16,6 +16,15 @@ const Form = () => {
     const dispatch = useDispatch()
     const lists = useSelector(state => state.forms.forms)
 
+    const buttonStyles = {
+        backgroundColor: 'rgb(111, 113, 228)',
+        color: 'white',
+        cursor: 'pointer',
+        width: '100px',
+        borderRadius: '5px',
+        height: '40px'
+    }
+
     const handleChange = (e) => {
         setData(e.target.value)
     }
@@ -42,7 +51,7 @@ const Form = () => {
             <form className = 'form' onSubmit = {handleSubmit}>
                 <TextField onChange = {handleChange} label = "Input" variant = "standard" value = {data}></TextField>
                 {/* <Button variant = "contained">submit</Button>    */}
-                <button>Submit</button>
+                <button style={buttonStyles}>Submit</button>
             </form>
             <div className = 'lists'>
             {lists.map((list, index) => (
